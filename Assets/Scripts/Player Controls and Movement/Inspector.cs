@@ -94,8 +94,8 @@ public class Inspector : MonoBehaviour {
 				if (Input.GetMouseButton(inspectorDrop.value) && info == true) {// change back to 1 if problems
 					info = false;
 					pnl.SetActive (false);
-					del.tg.target = null;
-					del.tg.selectedAxis = RuntimeGizmos.Axis.None;
+					del.tg.ClearTargets();
+					//del.tg.selectedAxis = RuntimeGizmos.Axis.None;
 					mr.enabled = false;
                     insu.changePanel("transform");
                 }

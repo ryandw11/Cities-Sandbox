@@ -41,12 +41,12 @@ public class Delete : MonoBehaviour {
 
 
 							if (objColliders [i].gameObject.transform.parent == null) {//check to see if the camera has a parent.
-							tg.target = null;
-							tg.selectedAxis = RuntimeGizmos.Axis.None;
+                            tg.ClearTargets();
+							//tg.seta = RuntimeGizmos.Axis.None;
 								Destroy (objColliders [i].gameObject);
 							} else {
-							tg.target = null;
-							tg.selectedAxis = RuntimeGizmos.Axis.None;
+                            tg.ClearTargets();
+							//tg.selectedAxis = RuntimeGizmos.Axis.None;
 								Destroy (objColliders [i].gameObject.transform.root.gameObject);
 								
 							}

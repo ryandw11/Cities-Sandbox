@@ -68,8 +68,8 @@ public class OnClick : MonoBehaviour {
 	public void Close(){
 		if (ins.pnl.activeSelf) {
 			ins.pnl.SetActive (false);
-			tg.target = null;
-			tg.selectedAxis = RuntimeGizmos.Axis.None;
+            tg.ClearTargets();
+			//tg.selectedAxis = RuntimeGizmos.Axis.None;
 			ins.info = false;
 			ins.selectedItem.transform.root.transform.GetComponent<MeshRenderer> ().enabled = false;
 		}
