@@ -387,7 +387,7 @@ namespace RuntimeGizmos
 	
 		void GetTarget()
 		{
-			if(nearAxis == Axis.None && Input.GetMouseButtonDown(1))
+			if(nearAxis == Axis.None && Input.GetMouseButtonDown(1)) //Change input
 			{
 				bool isAdding = Input.GetKey(AddSelection);
 				bool isRemoving = Input.GetKey(RemoveSelection);
@@ -395,7 +395,7 @@ namespace RuntimeGizmos
 				RaycastHit hitInfo; 
 				if(Physics.Raycast(myCamera.ScreenPointToRay(Input.mousePosition), out hitInfo))
 				{
-					Transform target = hitInfo.transform;
+					Transform target = hitInfo.transform.root;
 
 					if(isAdding)
 					{
