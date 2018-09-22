@@ -1,0 +1,17 @@
+#############################
+#        Window UI          #
+#############################
+Author: Ryandw11
+Version: 1.0.
+
+How to install:
+1. Open the unity package.
+2. Take the prefab and put it in a canvas. ***Check Notice***
+3. Call the API to use it.
+
+See github for more information.
+https://github.com/ryandw11/WindowUI
+
+Feel free to use this in any of your projects / games.
+
+Notice: Delete the prefab after installing or it will not work.

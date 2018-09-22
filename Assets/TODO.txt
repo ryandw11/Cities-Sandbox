@@ -1,0 +1,15 @@
+=======================================================
+=                    Future Featears                  =
+=======================================================
+[HalfWay] Terrian map to allow editing the train
+[] Schematic feature to save certain builds
+[x] Map saving
+[x] Remove walls
+[] Multiplayer
+
+
+
+
+How the inspector works:
+it scales a cube up to the size of the box collider :)
+is not int string bool float char 
