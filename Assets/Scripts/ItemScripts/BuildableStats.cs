@@ -20,7 +20,7 @@ public class BuildableStats : MonoBehaviour {
                 m.material.color = c;
                 if (transparency != 100 && m.material.GetFloat("_Mode") == 0)
                 {
-                    m.material.SetFloat("_Mode", 2);
+                    m.material.SetFloat("_Mode", 3);
                     m.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                     m.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                     m.material.SetInt("_ZWrite", 0);
@@ -28,16 +28,16 @@ public class BuildableStats : MonoBehaviour {
                     m.material.EnableKeyword("_ALPHABLEND_ON");
                     m.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
                     m.material.renderQueue = 3000;
-                }else if (transparency == 100 && m.material.GetFloat("_Mode") == 2)
+                }else if (transparency == 100 && m.material.GetFloat("_Mode") == 3)
                 {
                     m.material.SetFloat("_Mode", 0);
-                    m.material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.SrcAlpha);
-                    m.material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                    m.material.SetInt("_ZWrite", 0);
+                    m.material.SetInt("_SrcBlend", (int) UnityEngine.Rendering.BlendMode.One);
+                    m.material.SetInt("_DstBlend", (int) UnityEngine.Rendering.BlendMode.Zero);
+                    m.material.SetInt("_ZWrite", 1);
                     m.material.DisableKeyword("_ALPHATEST_ON");
                     m.material.EnableKeyword("_ALPHABLEND_ON");
                     m.material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                    m.material.renderQueue = 3000;
+                    m.material.renderQueue = -1;
                 }
             }
             currentTransparency = transparency;

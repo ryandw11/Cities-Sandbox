@@ -11,7 +11,7 @@ public class SpawnObject : MonoBehaviour {
 	public String resource = "Test";
 	public bool awaitingClick = false;
 	public GameObject obj;
-	public bool place = false;
+	public bool place = true;
     public LayerMask buildingMask;
 
     // Use this for initialization
@@ -19,9 +19,7 @@ public class SpawnObject : MonoBehaviour {
 		viewCamera = Camera.main; //get the camera
 	}
 
-	//TODO clean up this class
-	//TODO add feature to stack objects on eachother
-		
+	//TODO clean up this class	
 	
 	// Update is called once per frame
 	void Update () {
@@ -44,7 +42,7 @@ public class SpawnObject : MonoBehaviour {
                     {
                         return;
                     }
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetKeyDown(new KeyHandler().getKey("SpawnObject")))
                     {
 
                         Collider[] objColliders = Physics.OverlapSphere(point, 2);
@@ -52,7 +50,7 @@ public class SpawnObject : MonoBehaviour {
 						awaitingClick = false;
 
                     }
-                    else if (Input.GetKeyDown(KeyCode.R))
+                    else if (Input.GetKeyDown(new KeyHandler().getKey("RotateObject")))
                     {//end mouse if
                         obj.transform.RotateAround(new Vector3(point.x, point.y + (gameObject.transform.localScale.y / 2), point.z), obj.transform.up, Time.deltaTime * 300f);
                     }//end else
@@ -74,16 +72,18 @@ public class SpawnObject : MonoBehaviour {
                     {
                         return;
                     }
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetKeyDown(new KeyHandler().getKey("SpawnObject")))
                     {
 						
 						obj.transform.position = new Vector3 (point.x, point.y + (obj.transform.localScale.y / 2), point.z);//where it is placed
 						obj.layer = 10;
-						awaitingClick = false;
+                        obj.GetComponent<BoxCollider>().enabled = true; //Fixed the movement.
+                        awaitingClick = false;
+
 
 
                     }
-                    else if (Input.GetKeyDown(KeyCode.R))
+                    else if (Input.GetKeyDown(new KeyHandler().getKey("RotateObject")))
                     {//end mouse if
                         obj.transform.RotateAround(new Vector3(point.x, point.y + (gameObject.transform.localScale.y / 2), point.z), obj.transform.up, Time.deltaTime * 300f);
                     }//end else
@@ -104,6 +104,7 @@ public class SpawnObject : MonoBehaviour {
 			if (objColliders [i].gameObject.tag.Equals ("Ground")) {
 				obj.transform.position = new Vector3 (point.x, point.y + (obj.transform.localScale.y / 2), point.z);//where it is placed
                 obj.layer = 10;
+                obj.GetComponent<BoxCollider>().enabled = true;
 
 				break;
 			}

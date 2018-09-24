@@ -18,7 +18,7 @@ public class DuplicateObject : MonoBehaviour {
 
     void Update()
     {
-        if (ins.info && Input.GetKeyDown(KeyCode.G))
+        if (ins.info && Input.GetKeyDown(new KeyHandler().getKey("DuplicateObject")))
         {
             duplicate();
         }

@@ -13,6 +13,8 @@ namespace RuntimeGizmos
 	[RequireComponent(typeof(Camera))]
 	public class TransformGizmo : MonoBehaviour
 	{
+        public LayerMask buildingMask;
+
 		public TransformSpace space = TransformSpace.Global;
 		public TransformType type = TransformType.Move;
 		public TransformPivot pivot = TransformPivot.Pivot;
@@ -387,15 +389,21 @@ namespace RuntimeGizmos
 	
 		void GetTarget()
 		{
-			if(nearAxis == Axis.None && Input.GetMouseButtonDown(1)) //Change input
+			if(nearAxis == Axis.None && Input.GetKeyDown(new KeyHandler().getKey("Inspector"))) //Change input Input.GetMouseButtonDown(1);
 			{
 				bool isAdding = Input.GetKey(AddSelection);
 				bool isRemoving = Input.GetKey(RemoveSelection);
 
 				RaycastHit hitInfo; 
-				if(Physics.Raycast(myCamera.ScreenPointToRay(Input.mousePosition), out hitInfo))
+				if(Physics.Raycast(myCamera.ScreenPointToRay(Input.mousePosition), out hitInfo, buildingMask))
 				{
 					Transform target = hitInfo.transform.root;
+                    Debug.Log(target.gameObject.layer);
+                    if (target.gameObject.layer == 8 || target.gameObject.layer == 0)
+                    {
+                        
+                        return;
+                    }
 
 					if(isAdding)
 					{

@@ -36,9 +36,17 @@ public class PlayUI : MonoBehaviour {
         lw = GetComponent<LoadWorld>();
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void onSettings()
+    {
+        controlPanel.SetActive(false);
+        main.SetActive(false);
+        backgroundPnl.SetActive(false);
+        mainBackButton.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
