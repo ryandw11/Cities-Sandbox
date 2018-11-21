@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Dropdown))]
-public class SettingDropDown: MonoBehaviour {
+[RequireComponent(typeof(Slider))]
+public class SettingSlider: MonoBehaviour {
     public string name;
 
-    public int DefaultValue = 0;
+    public float DefaultValue = 0;
 
-    private Dropdown dropdown;
+    private Slider slider;
 
     private SettingsManager sm;
 
     void Start()
     {
         sm = new SettingsManager();
-        dropdown = gameObject.GetComponent<Dropdown>();
+        slider = gameObject.GetComponent<Slider>();
         if (!PlayerPrefs.HasKey(name))
         {
             sm.saveSettings(name, DefaultValue);
         }
 
-        dropdown.value = sm.getSettingInt(name);
+        slider.value = sm.getSettingFloat(name);
         
     }
 
     public void onChange()
     {
-        sm.saveSettings(name, dropdown.value);
+        sm.saveSettings(name, slider.value);
     }
 }

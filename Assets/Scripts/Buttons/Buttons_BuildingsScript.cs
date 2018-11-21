@@ -10,8 +10,9 @@ public class Buttons_BuildingsScript : MonoBehaviour {
 	public GameObject blocks;
     public GameObject signs;
     public GameObject terrain;
+    public GameObject nature;
 
-	public SpawnObject spawnOBJ;
+    public SpawnObject spawnOBJ;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +34,7 @@ public class Buttons_BuildingsScript : MonoBehaviour {
 			blocks.SetActive (false);
             signs.SetActive(false);
             terrain.SetActive(false);
+            nature.SetActive(false);
 		} else {
 			panel.SetActive (false);
 			buildings.SetActive (false);

@@ -10,8 +10,9 @@ public class Buttons_Roads : MonoBehaviour {
 	public GameObject blocks;
     public GameObject signs;
     public GameObject terrain;
+    public GameObject nature;
 
-	public SpawnObject spawnOBJ;
+    public SpawnObject spawnOBJ;
 
 	//TODO Make it where you can constantly place them without needing to click again. (Like delete)
 
@@ -35,6 +36,7 @@ public class Buttons_Roads : MonoBehaviour {
 			blocks.SetActive (false);
             signs.SetActive(false);
             terrain.SetActive(false);
+            nature.SetActive(false);
 		} else {
 			panel.SetActive (false);
 			road.SetActive (false);
