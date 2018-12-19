@@ -68,10 +68,4 @@ public class Buttons_Nature : MonoBehaviour {
         spawnOBJ.Place();
         spawnOBJ.awaitingClick = true;
     }
-    public void OnArenaClick()
-    {
-        spawnOBJ.resource = "Arena";
-        spawnOBJ.Place();
-        spawnOBJ.awaitingClick = true;
-    }
 }

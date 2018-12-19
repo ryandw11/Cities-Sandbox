@@ -12,6 +12,8 @@ public class SettingsInGame : MonoBehaviour {
     public GameObject audioPanel;
     public GameObject gameplayPanel;
 
+    public GameObject menuPanel;
+
     public Button controlButton;
     public Button audioButton;
     public Button gameplayButton;
@@ -23,7 +25,6 @@ public class SettingsInGame : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        settingsPanel.SetActive(false);
         controlsPanel.SetActive(true);
         audioPanel.SetActive(false);
         gameplayPanel.SetActive(false);
@@ -47,6 +48,7 @@ public class SettingsInGame : MonoBehaviour {
     public void back()
     {
         settingsPanel.SetActive(false);
+        menuPanel.SetActive(true);
     }
 
     public void settings()
