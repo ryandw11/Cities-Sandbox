@@ -6,6 +6,11 @@
 [x] Map saving
 [x] Remove walls
 [] Multiplayer
+[] Allow each object to have their own property.
+
+Bugs to Fix:
+- Objects not being placed on ground.
+- Objects not being placed on eachother.
 
 
 
