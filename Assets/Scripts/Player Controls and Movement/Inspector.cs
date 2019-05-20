@@ -78,7 +78,9 @@ public class Inspector : MonoBehaviour {
 
 							mr = selectedItem.GetComponent<MeshRenderer> ();
 							mr.enabled = true;
-                            
+
+                            // Calls the API Method for the inspect event.
+                            APIHandler.evt.callEvent(new OnInspectEvent(selectedItem));
 						}
 					} else {
                         #region Unused Code
@@ -100,6 +102,8 @@ public class Inspector : MonoBehaviour {
 					//del.tg.selectedAxis = RuntimeGizmos.Axis.None;
 					mr.enabled = false;
                     insu.changePanel("transform");
+
+                    APIHandler.evt.callEvent(new OnUnInspectEvent(selectedItem));
                 }
 			}
 		}//end of if !sobj.awaitingClick
