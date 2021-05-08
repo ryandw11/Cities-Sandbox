@@ -28,8 +28,8 @@ public class TerrainEditor : MonoBehaviour
     void Start () {
         viewCamera = Camera.main;
         terrain = Terrain.activeTerrain;
-        hmWidth = terrain.terrainData.heightmapWidth;
-        hmHeight = terrain.terrainData.heightmapHeight;
+        hmWidth = terrain.terrainData.heightmapResolution;
+        hmHeight = terrain.terrainData.heightmapResolution;
     }
 	
 	// Update is called once per frame

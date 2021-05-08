@@ -14,9 +14,12 @@ public class SpawnObject : MonoBehaviour {
 	public bool place = true;
     public LayerMask buildingMask;
 
+    private KeyHandler keyHandler;
+
     // Use this for initialization
     void Start () {
 		viewCamera = Camera.main; //get the camera
+        keyHandler = viewCamera.GetComponent<KeyHandler>();
 	}
 
 	//TODO clean up this class	
@@ -42,7 +45,7 @@ public class SpawnObject : MonoBehaviour {
                     {
                         return;
                     }
-                    if (Input.GetKeyDown(new KeyHandler().getKey("SpawnObject")))
+                    if (Input.GetKeyDown(keyHandler.getKey("SpawnObject")))
                     {
 
                         Collider[] objColliders = Physics.OverlapSphere(point, 2);
@@ -50,7 +53,7 @@ public class SpawnObject : MonoBehaviour {
 						awaitingClick = false;
 
                     }
-                    else if (Input.GetKeyDown(new KeyHandler().getKey("RotateObject")))
+                    else if (Input.GetKeyDown(keyHandler.getKey("RotateObject")))
                     {//end mouse if
                         obj.transform.RotateAround(new Vector3(point.x, point.y + (gameObject.transform.localScale.y / 2), point.z), obj.transform.up, Time.deltaTime * 300f);
                     }//end else
@@ -72,7 +75,7 @@ public class SpawnObject : MonoBehaviour {
                     {
                         return;
                     }
-                    if (Input.GetKeyDown(new KeyHandler().getKey("SpawnObject")))
+                    if (Input.GetKeyDown(keyHandler.getKey("SpawnObject")))
                     {
 						
 						obj.transform.position = new Vector3 (point.x, point.y + (obj.transform.localScale.y / 2), point.z);//where it is placed
@@ -83,7 +86,7 @@ public class SpawnObject : MonoBehaviour {
 
 
                     }
-                    else if (Input.GetKeyDown(new KeyHandler().getKey("RotateObject")))
+                    else if (Input.GetKeyDown(keyHandler.getKey("RotateObject")))
                     {//end mouse if
                         obj.transform.RotateAround(new Vector3(point.x, point.y + (gameObject.transform.localScale.y / 2), point.z), obj.transform.up, Time.deltaTime * 300f);
                     }//end else

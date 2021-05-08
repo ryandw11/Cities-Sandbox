@@ -15,6 +15,7 @@ public class WindowUIMenu
     private string title;
     private string error;
     private bool exit;
+    private bool background;
     private GameObject windowUI;
     public int output = -1;
     private ExitDefault ex;
@@ -39,8 +40,7 @@ public class WindowUIMenu
         exit = wexit;
         this.ex = ex;
         this.id = id;
-
-        display();
+        this.background = false;
     }
 
     public WindowImage getImage()
@@ -78,6 +78,16 @@ public class WindowUIMenu
         return uh.inputField.text;
     }
 
+    public bool isBackgroundActive()
+    {
+        return background;
+    }
+
+    public void setBackgroundActive(bool active)
+    {
+        this.background = active;
+    }
+
     /* 
      * Display the gui 
      */
@@ -91,6 +101,8 @@ public class WindowUIMenu
         Text info = uh.textError;
         header.text = title;
         info.text = error;
+
+        uh.background.SetActive(background);
 
         if (type == WindowType.OK)
         {

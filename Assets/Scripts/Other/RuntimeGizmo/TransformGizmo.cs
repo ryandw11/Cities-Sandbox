@@ -84,6 +84,7 @@ namespace RuntimeGizmos
 		List<Material> materialsBuffer = new List<Material>();
 
 		Camera myCamera;
+		KeyHandler keyHandler;
 
 		static Material lineMaterial;
 		static Material outlineMaterial;
@@ -91,6 +92,7 @@ namespace RuntimeGizmos
 		void Awake()
 		{
 			myCamera = GetComponent<Camera>();
+			keyHandler = myCamera.GetComponent<KeyHandler>();
 			SetMaterial();
 		}
 
@@ -389,7 +391,7 @@ namespace RuntimeGizmos
 	
 		void GetTarget()
 		{
-			if(nearAxis == Axis.None && Input.GetKeyDown(new KeyHandler().getKey("Inspector"))) //Change input Input.GetMouseButtonDown(1);
+			if(nearAxis == Axis.None && Input.GetKeyDown(keyHandler.getKey("Inspector"))) //Change input Input.GetMouseButtonDown(1);
 			{
 				bool isAdding = Input.GetKey(AddSelection);
 				bool isRemoving = Input.GetKey(RemoveSelection);

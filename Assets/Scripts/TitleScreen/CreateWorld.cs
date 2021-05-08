@@ -28,6 +28,7 @@ public class CreateWorld : MonoBehaviour {
                 List<string> s = new List<string>();
                 s.Add("ok");
                 WindowUI wui = new WindowUI(WindowImage.WARNING, WindowType.OK, s, "World Creation Error", "The world name already exists.", true, 11, ExitDefault.CLOSEOPERATION);
+                wui.Display();
             }
             else
             {
@@ -41,6 +42,7 @@ public class CreateWorld : MonoBehaviour {
             List<string> s = new List<string>();
             s.Add("ok");
             WindowUI wui = new WindowUI(WindowImage.WARNING, WindowType.OK, s, "World Creation Error", "The world name cannot be nothing!", true, 1, ExitDefault.CLOSEOPERATION);
+            wui.Display();
         }
     }
 }

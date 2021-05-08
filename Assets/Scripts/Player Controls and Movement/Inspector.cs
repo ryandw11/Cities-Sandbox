@@ -34,6 +34,7 @@ public class Inspector : MonoBehaviour {
 
 	private MeshRenderer mr;
     private InspectorUtils insu;
+	private KeyHandler keyHandler;
 
 
 	//TODO fix the problem with collison
@@ -41,7 +42,8 @@ public class Inspector : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		viewCamera = Camera.main; //get the camera
-        insu = new InspectorUtils();
+		keyHandler = viewCamera.GetComponent<KeyHandler>();
+		insu = new InspectorUtils();
         transformPanel.SetActive(true);
         propertiesPanel.SetActive(false);
         transformButton.gameObject.GetComponent<Image>().color = Color.white;
@@ -59,7 +61,7 @@ public class Inspector : MonoBehaviour {
 			if (Physics.Raycast (ray.origin, ray.direction, out rayDistance, Mathf.Infinity, buildingMask)) { //Sending out a raycast to find the ground position.
 				Vector3 point = rayDistance.point;
 				Debug.DrawLine (ray.origin, point, Color.blue); //For Testing
-				if (Input.GetKeyDown(new KeyHandler().getKey("Inspector")))
+				if (Input.GetKeyDown(keyHandler.getKey("Inspector")))
                 { //Added a setting so it can be changed. Input.GetMouseButtonDown (inspectorDrop.value)
                     Collider[] objColliders = Physics.OverlapSphere (point, 0.1f);
 
@@ -94,7 +96,7 @@ public class Inspector : MonoBehaviour {
 				}//
 				
 			} else {
-				if (Input.GetKeyDown(new KeyHandler().getKey("Inspector")) && info == true)
+				if (Input.GetKeyDown(keyHandler.getKey("Inspector")) && info == true)
                 {// change back to 1 if problems Input.GetMouseButton(inspectorDrop.value) 
                     info = false;
 					pnl.SetActive (false);

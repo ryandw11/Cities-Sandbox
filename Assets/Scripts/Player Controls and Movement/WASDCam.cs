@@ -55,8 +55,8 @@ public class WASDCam : MonoBehaviour {
             {
                 if (Input.GetKey(kh.getKey("MoveCamera")))
                 { //if the mouse is pressed down
-                    rotationX += Input.GetAxis("Mouse X") * sensX /** Time.deltaTime*/;
-                    rotationY += Input.GetAxis("Mouse Y") * sensY /* *Time.deltaTime*/;
+                    rotationX += Input.GetAxis("Mouse X") * sensX  * Time.deltaTime;
+                    rotationY += Input.GetAxis("Mouse Y") * sensY  *Time.deltaTime;
                     //rotationX += Input.GetAxis("Vertical") * 100F * Time.deltaTime;
                     //rotationY += Input.GetAxis("Horizontal") * 100F * Time.deltaTime;
                     rotationY = Mathf.Clamp(rotationY, minY, maxY);

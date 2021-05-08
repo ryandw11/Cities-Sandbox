@@ -57,15 +57,52 @@ public class CubeUI : MonoBehaviour, IEventHandler
 
         CubeProperties cp = obj.GetComponent<CubeProperties>();
         cp.color = current;
-        
+    }
+
+    /// <summary>
+    /// This method is called when the game first starts and the save data is loaded in or when the object is duplicated.. 
+    /// <para>This method is called by <see cref="CubeProperties.SetupSerialziedData(SerObjectProperties)"/> or <see cref="CubeProperties.Duplicate(ObjectProperties)"/>.</para>
+    /// </summary>
+    /// <param name="obj">The gameobject to change the color for.</param>
+    /// <param name="color">The color value.</param>
+    public void Setup(GameObject obj, int color)
+    {
+        switch (color)
+        {
+            case 0:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = red;
+                break;
+            case 1:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = green;
+                break;
+            case 2:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = blue;
+                break;
+            case 3:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = purple;
+                break;
+            case 4:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = white;
+                break;
+            case 5:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = black;
+                break;
+            case 6:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = orange;
+                break;
+            case 7:
+                obj.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = yellow;
+                break;
+        }
     }
 
     [EventHandler]
     public void onIns(OnInspectEvent e)
     {
+        Debug.Log(gameObject.name);
         if (e.getGameObject().GetComponent<CubeProperties>() != null)
         {
-            e.getGameObject().GetComponent<CubeProperties>().display(content);
+            e.getGameObject().GetComponent<CubeProperties>().Display(content);
         }
     }
 

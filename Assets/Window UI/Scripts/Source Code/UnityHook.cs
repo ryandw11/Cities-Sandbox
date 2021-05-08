@@ -17,12 +17,13 @@ public class UnityHook : MonoBehaviour {
     public ButtonPressEvent ev;
     public WindowUIMenu activeMenu;
     public InputField inputField;
+    public GameObject background;
 
     public Sprite info;
     public Sprite error;
     public Sprite warnning;
 
-    
+
     /*
      * Button Hooks
      */

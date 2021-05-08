@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-/**
- * WindowUI API
- * Author: Ryandw11
- * Version 1.0
- */
+
+/// <summary>
+/// This handles the clicking of the UI.
+/// </summary>
 public class ButtonPressEvent : MonoBehaviour{
 
     public PlayUI pui;
@@ -46,6 +45,10 @@ public class ButtonPressEvent : MonoBehaviour{
         else if(e.getId() == 8)
         {
             pui.rWorld(e.getInput());
+        }
+        else if(e.getId() == 22)
+        {
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
     }
 }

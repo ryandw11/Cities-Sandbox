@@ -27,7 +27,21 @@ public class Settings : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        settingsPanel.SetActive(false);
+        // Ensure the settings have been set.
+        if (!PlayerPrefs.HasKey("Move_Forward"))
+        {
+            settingsPanel.SetActive(true);
+            List<string> s = new List<string>();
+            s.Add("Ok");
+            WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.OK, s, "Confirm Settings", "Welcome to City Sandbox! To start off confirm your control settings. Click the close button when you are done to go the the main menu!", false, 25, ExitDefault.CLOSEOPERATION);
+            wui.SetBackgroundActive(true);
+            wui.Display();
+        }
+        else
+        {
+            settingsPanel.SetActive(false);
+        }
+        
         controlsPanel.SetActive(true);
         audioPanel.SetActive(false);
         gameplayPanel.SetActive(false);

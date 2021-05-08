@@ -48,7 +48,7 @@ public class MenuScript : MonoBehaviour {
         s.Add("Yes");
         s.Add("No");
         WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.YES_NO, s, "Main Menu", "Are you sure you want to go back to the main menu? (Your progress will not be saved)", true, 3, ExitDefault.CLOSEOPERATION);
-        
+        wui.Display();
 	}
 
     /**
@@ -62,6 +62,7 @@ public class MenuScript : MonoBehaviour {
         List<string> s = new List<string>();
         s.Add("Ok");
         WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.OK, s, "Game Saved", "The game has been saved!", false, 10, ExitDefault.CLOSEOPERATION);
+        wui.Display();
     }
 
 	public void settings(){
@@ -82,7 +83,9 @@ public class MenuScript : MonoBehaviour {
         List<string> s = new List<string>();
         s.Add("Yes");
         s.Add("No");
-        WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.YES_NO, s, "Exit The Game", "Are you sure you want to exit the game? (Any unsaved progress will not be saved.)", true, 2, ExitDefault.CLOSEOPERATION);
+        WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.YES_NO, s, "Exit The Game", "Are you sure you want to exit the game? (Any unsaved progress will not be saved.)", false, 2, ExitDefault.CLOSEOPERATION);
+        wui.SetBackgroundActive(true);
+        wui.Display();
         menuPanel.SetActive(false);
         overlay.SetActive(true);
 	}
