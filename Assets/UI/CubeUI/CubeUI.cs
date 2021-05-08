@@ -63,9 +63,19 @@ public class CubeUI : MonoBehaviour, IEventHandler
     [EventHandler]
     public void onIns(OnInspectEvent e)
     {
-        if (e.getGameObject().GetComponent<CubeProperties>())
+        if (e.getGameObject().GetComponent<CubeProperties>() != null)
         {
             e.getGameObject().GetComponent<CubeProperties>().display(content);
+        }
+    }
+
+    [EventHandler]
+    public void onUnIns(OnUnInspectEvent e)
+    {
+        int childs = content.transform.childCount;
+        for (int i = childs - 1; i >= 0; i--)
+        {
+            Destroy(content.transform.GetChild(i).gameObject);
         }
     }
 }
