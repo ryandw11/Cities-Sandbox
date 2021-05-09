@@ -101,7 +101,7 @@ public class Settings : MonoBehaviour {
         else
         {
             string[] s = screenRes.options[screenRes.value].text.Split('x');
-            Screen.SetResolution(Int32.Parse(s[0]), Int32.Parse(s[1]), fullScreen.isOn);
+            Screen.SetResolution(int.Parse(s[0]), int.Parse(s[1]), fullScreen.isOn);
         }
     }
 

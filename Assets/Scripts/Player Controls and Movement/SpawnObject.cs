@@ -7,20 +7,21 @@ using System;
 public class SpawnObject : MonoBehaviour {
 
 	Camera viewCamera;
-	GameObject test;
-	public String resource = "Test";
+	public string resource = "Test";
 	public bool awaitingClick = false;
 	public GameObject obj;
 	public bool place = true;
     public LayerMask buildingMask;
 
     private KeyHandler keyHandler;
+    private SettingsManager settingsManager;
 
     // Use this for initialization
     void Start () {
 		viewCamera = Camera.main; //get the camera
         keyHandler = viewCamera.GetComponent<KeyHandler>();
-	}
+        settingsManager = new SettingsManager();
+    }
 
 	//TODO clean up this class	
 	
@@ -29,7 +30,7 @@ public class SpawnObject : MonoBehaviour {
 
         if (awaitingClick)
         {
-            if (place)
+            if (!settingsManager.getBool("BuildOnOthers"))
             {
                 Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
                 Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //Grabing a plane

@@ -36,18 +36,11 @@ public class SettingsManager {
 
     public void saveBool(string name, bool t)
     {
-        if (t)
-            PlayerPrefs.SetString(name, "true");
-        else
-            PlayerPrefs.SetString(name, "false");
+        PlayerPrefs.SetInt(name, t ? 1 : 0);
     }
 
     public bool getBool(string name)
     {
-        string s = PlayerPrefs.GetString(name);
-        if (s == "true")
-            return true;
-        else
-            return false;
+        return PlayerPrefs.GetInt(name) == 1;
     }
 }
