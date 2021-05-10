@@ -45,6 +45,7 @@ public class LoadTheWorld : MonoBehaviour {
             obj.transform.eulerAngles = new Vector3(ob.rotX, ob.rotY, ob.rotZ);
             obj.transform.localScale = new Vector3(ob.scalX, ob.scalY, ob.scalZ);
             obj.layer = 10;
+            obj.GetComponent<BoxCollider>().enabled = true;
             SerBuildableStats bs = ob.sbs;
             if(bs != null) //TODO remove hard code.
             {
