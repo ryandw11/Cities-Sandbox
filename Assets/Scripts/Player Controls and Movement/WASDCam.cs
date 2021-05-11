@@ -38,30 +38,18 @@ public class WASDCam : MonoBehaviour {
 		if (!settingsButton.isMenuOpen) {
 			float scroll = Input.GetAxis ("Mouse ScrollWheel"); //This gets the scroll
 			transform.Translate (0, -(scroll * zoomSpeed), scroll * zoomSpeed, Space.World); //translate the camera. (Inverted so the controls feel right).
-            int mouseButton = moveControl.value;
-            switch (mouseButton)
-            {
-                case 0:
-                    mouseButton = 2;
-                    break;
-                case 1:
-                    mouseButton = 1;
-                    break;
-                case 2:
-                    mouseButton = 0;
-                    break;
+            if (Input.GetKey(kh.getKey("MoveCamera")))
+            { //if the mouse is pressed down
+                rotationX += Input.GetAxis("Mouse X") * 10 /* * Time.deltaTime*/;
+                rotationY += Input.GetAxis("Mouse Y") * 10 /* * Time.deltaTime*/;
+                //rotationX += Input.GetAxis("Vertical") * 100F * Time.deltaTime;
+                //rotationY += Input.GetAxis("Horizontal") * 100F * Time.deltaTime;
+                rotationY = Mathf.Clamp(rotationY, minY, maxY);
+                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0); //Angles the camera.
             }
-            if (moveType.value == 0)
+            /*if (moveType.value == 0)
             {
-                if (Input.GetKey(kh.getKey("MoveCamera")))
-                { //if the mouse is pressed down
-                    rotationX += Input.GetAxis("Mouse X") * sensX  * Time.deltaTime;
-                    rotationY += Input.GetAxis("Mouse Y") * sensY  *Time.deltaTime;
-                    //rotationX += Input.GetAxis("Vertical") * 100F * Time.deltaTime;
-                    //rotationY += Input.GetAxis("Horizontal") * 100F * Time.deltaTime;
-                    rotationY = Mathf.Clamp(rotationY, minY, maxY);
-                    transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0); //Angles the camera.
-                }
+                
             }
             else
             {
@@ -75,7 +63,7 @@ public class WASDCam : MonoBehaviour {
                     //rotationY = Mathf.Clamp(rotationY, minY, maxY);
                     transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0); //Angles the camera.
                 }
-            }
+            }*/
 
             if (Input.GetKey (kh.getKey("Move_Forward"))) {
 				transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime); //move forward
@@ -89,6 +77,14 @@ public class WASDCam : MonoBehaviour {
 			if (Input.GetKey (kh.getKey("Move_Right"))) {
 				transform.Translate (Vector3.right * moveSpeed * Time.deltaTime);//move left (inverted)
 			}
+            if (Input.GetKey(kh.getKey("CameraUp")))
+            {
+                transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0));
+            }
+            if (Input.GetKey(kh.getKey("CameraDown")))
+            {
+                transform.Translate(new Vector3(0, -moveSpeed * Time.deltaTime, 0));
+            }
             if (Input.GetKey(kh.getKey("Reset_Motion"))) // Resets Velocity so that when the camera is going crazy it will be fixed
             {
                 GetComponent<Rigidbody>().velocity = Vector3.zero;

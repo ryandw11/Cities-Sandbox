@@ -400,7 +400,6 @@ namespace RuntimeGizmos
 				if(Physics.Raycast(myCamera.ScreenPointToRay(Input.mousePosition), out hitInfo, buildingMask))
 				{
 					Transform target = hitInfo.transform.root;
-                    Debug.Log(target.gameObject.layer);
                     if (target.gameObject.layer == 8 || target.gameObject.layer == 0)
                     {
                         

@@ -99,7 +99,6 @@ public class CubeUI : MonoBehaviour, IEventHandler
     [EventHandler]
     public void onIns(OnInspectEvent e)
     {
-        Debug.Log(gameObject.name);
         if (e.getGameObject().GetComponent<CubeProperties>() != null)
         {
             e.getGameObject().GetComponent<CubeProperties>().Display(content);

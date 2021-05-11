@@ -99,7 +99,6 @@ public class SphereUI : MonoBehaviour, IEventHandler
     [EventHandler]
     public void onIns(OnInspectEvent e)
     {
-        Debug.Log(gameObject.name);
         if (e.getGameObject().GetComponent<SphereProperties>() != null)
         {
             e.getGameObject().GetComponent<SphereProperties>().Display(content);

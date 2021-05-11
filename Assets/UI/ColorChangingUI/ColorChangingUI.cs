@@ -99,7 +99,6 @@ public class ColorChangingUI : MonoBehaviour, IEventHandler
     [EventHandler]
     public void onIns(OnInspectEvent e)
     {
-        Debug.Log(gameObject.name);
         if (e.getGameObject().GetComponent<ColorChangingProperties>() != null)
         {
             e.getGameObject().GetComponent<ColorChangingProperties>().Display(content);
