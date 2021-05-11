@@ -11,7 +11,7 @@ You can download the current and past versions of the game through my [website](
 ## Images
 ![Screen shot of an example city.](https://img.ryandw11.com/raw/oklw2dpqs.png)
 ![Placing down an item.](https://img.ryandw11.com/raw/oklxsi59q.png)
-![Editing an object. (In this example lighting)](https://img.ryandw11.com/image/oklx6kv3s)
+![Editing an object. (In this example lighting)](https://img.ryandw11.com/raw/oklx6kv3s.png)
 ![Controls settings menu.](https://img.ryandw11.com/raw/oklx8swm7.png)
 ![The main menu.](https://img.ryandw11.com/raw/oklx590g4.png)
 
