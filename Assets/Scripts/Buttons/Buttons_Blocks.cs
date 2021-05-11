@@ -10,8 +10,9 @@ public class Buttons_Blocks : MonoBehaviour {
 	public GameObject blocks;
     public GameObject signs;
     public GameObject terrain;
+    public GameObject nature;
 
-	public SpawnObject spawnOBJ;
+    public SpawnObject spawnOBJ;
 
 	//TODO add feature where you can scroll through the list of objects in the selection.
 
@@ -36,6 +37,7 @@ public class Buttons_Blocks : MonoBehaviour {
 			buildings.SetActive (false);
             signs.SetActive(false);
             terrain.SetActive(false);
+            nature.SetActive(false);
 		} else {
 			panel.SetActive (false);
 			blocks.SetActive (false);

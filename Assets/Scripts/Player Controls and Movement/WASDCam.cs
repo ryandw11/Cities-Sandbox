@@ -25,40 +25,35 @@ public class WASDCam : MonoBehaviour {
 	float rotationY = 0.0f;
 	float rotationX = 0.0f;
 	private float zoomSpeed = 20.0f;
-	
-	// Update is called once per frame
-	void Update () {
+
+    private KeyHandler kh;
+
+    void Start()
+    {
+        kh = Camera.main.GetComponent<KeyHandler>();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (!settingsButton.isMenuOpen) {
 			float scroll = Input.GetAxis ("Mouse ScrollWheel"); //This gets the scroll
 			transform.Translate (0, -(scroll * zoomSpeed), scroll * zoomSpeed, Space.World); //translate the camera. (Inverted so the controls feel right).
-            int mouseButton = moveControl.value;
-            switch (mouseButton)
-            {
-                case 0:
-                    mouseButton = 2;
-                    break;
-                case 1:
-                    mouseButton = 1;
-                    break;
-                case 2:
-                    mouseButton = 0;
-                    break;
+            if (Input.GetKey(kh.getKey("MoveCamera")))
+            { //if the mouse is pressed down
+                rotationX += Input.GetAxis("Mouse X") * 10 /* * Time.deltaTime*/;
+                rotationY += Input.GetAxis("Mouse Y") * 10 /* * Time.deltaTime*/;
+                //rotationX += Input.GetAxis("Vertical") * 100F * Time.deltaTime;
+                //rotationY += Input.GetAxis("Horizontal") * 100F * Time.deltaTime;
+                rotationY = Mathf.Clamp(rotationY, minY, maxY);
+                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0); //Angles the camera.
             }
-            if (moveType.value == 0)
+            /*if (moveType.value == 0)
             {
-                if (Input.GetMouseButton(mouseButton))
-                { //if the mouse is pressed down
-                    rotationX += Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
-                    rotationY += Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
-                    //rotationX += Input.GetAxis("Vertical") * 100F * Time.deltaTime;
-                    //rotationY += Input.GetAxis("Horizontal") * 100F * Time.deltaTime;
-                    rotationY = Mathf.Clamp(rotationY, minY, maxY);
-                    transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0); //Angles the camera.
-                }
+                
             }
             else
             {
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                if (Input.GetKey(kh.getKey("Move_Forward")) || Input.GetKey(kh.getKey("Move_Backwards")) || Input.GetKey(kh.getKey("Move_Left")) || Input.GetKey(kh.getKey("Move_Right")))
                 {
                 }
                 else
@@ -68,21 +63,29 @@ public class WASDCam : MonoBehaviour {
                     //rotationY = Mathf.Clamp(rotationY, minY, maxY);
                     transform.localEulerAngles = new Vector3(-rotationX, rotationY, 0); //Angles the camera.
                 }
-            }
+            }*/
 
-            if (Input.GetKey (KeyCode.W)) {
+            if (Input.GetKey (kh.getKey("Move_Forward"))) {
 				transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime); //move forward
 			}
-			if (Input.GetKey (KeyCode.A)) {
+			if (Input.GetKey (kh.getKey("Move_Left"))) {
 				transform.Translate (Vector3.left * moveSpeed * Time.deltaTime);//move right (inverted)
 			}
-			if (Input.GetKey (KeyCode.S)) {
+			if (Input.GetKey (kh.getKey("Move_Backwards"))) {
 				transform.Translate (Vector3.back * moveSpeed * Time.deltaTime);//move back
 			}
-			if (Input.GetKey (KeyCode.D)) {
+			if (Input.GetKey (kh.getKey("Move_Right"))) {
 				transform.Translate (Vector3.right * moveSpeed * Time.deltaTime);//move left (inverted)
 			}
-            if (Input.GetKey(KeyCode.Q)) // Resets Velocity so that when the camera is going crazy it will be fixed
+            if (Input.GetKey(kh.getKey("CameraUp")))
+            {
+                transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0));
+            }
+            if (Input.GetKey(kh.getKey("CameraDown")))
+            {
+                transform.Translate(new Vector3(0, -moveSpeed * Time.deltaTime, 0));
+            }
+            if (Input.GetKey(kh.getKey("Reset_Motion"))) // Resets Velocity so that when the camera is going crazy it will be fixed
             {
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 GetComponent<Rigidbody>().angularVelocity = Vector3.zero;

@@ -30,6 +30,11 @@ public class AllWorlds : MonoBehaviour {
         List<string> options = new List<string>();
 
         DirectoryInfo info = new DirectoryInfo(Application.persistentDataPath + Path.DirectorySeparatorChar + "saves");
+        if (!info.Exists)
+        {
+            info.Create();
+        }
+
         FileInfo[] fileInfo = info.GetFiles();
         foreach (FileInfo fi in fileInfo)
         {

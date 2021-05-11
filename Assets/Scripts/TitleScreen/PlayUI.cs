@@ -36,9 +36,17 @@ public class PlayUI : MonoBehaviour {
         lw = GetComponent<LoadWorld>();
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void onSettings()
+    {
+        controlPanel.SetActive(false);
+        main.SetActive(false);
+        backgroundPnl.SetActive(false);
+        mainBackButton.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -56,6 +64,7 @@ public class PlayUI : MonoBehaviour {
         List<string> s = new List<string>();
         s.Add("Ok");
         WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.OK, s, "Coming Soon", "This feature is coming soon!", true, 7, ExitDefault.CLOSEOPERATION);
+        wui.Display();
     }
 
     public void openInFolder()
@@ -93,6 +102,7 @@ public class PlayUI : MonoBehaviour {
             List<string> s = new List<string>();
             s.Add("Ok");
             WindowUI wui = new WindowUI(WindowImage.ERROR, WindowType.OK, s, "File Browser", "This game does not support your operating system!", false, 6, ExitDefault.CLOSEOPERATION);
+            wui.Display();
         }
     }
 
@@ -102,6 +112,7 @@ public class PlayUI : MonoBehaviour {
         s.Add("Ok");
         s.Add("World Name");
         WindowUI wui = new WindowUI(WindowImage.INFO, WindowType.INPUTFIELD, s, "Rename World", "Please enter in the new name:", false, 8, ExitDefault.CLOSEOPERATION);
+        wui.Display();
     }
 
     public void rWorld(string s)
@@ -111,6 +122,7 @@ public class PlayUI : MonoBehaviour {
             List<string> st = new List<string>();
             st.Add("ok");
             WindowUI wui = new WindowUI(WindowImage.WARNING, WindowType.OK, st, "World Rename Error", "The world name already exists.", true, 12, ExitDefault.CLOSEOPERATION);
+            wui.Display();
             return;
         }
         if (manage.options[manage.value].text == s)
@@ -118,6 +130,7 @@ public class PlayUI : MonoBehaviour {
             List<string> st = new List<string>();
             st.Add("Ok");
             WindowUI wui = new WindowUI(WindowImage.ERROR, WindowType.OK, st, "World Rename", "You must rename to world to something else!", false, 9, ExitDefault.CLOSEOPERATION);
+            wui.Display();
         }
         else
          File.Move(Application.persistentDataPath + Path.DirectorySeparatorChar + "saves" + Path.DirectorySeparatorChar + manage.options[manage.value].text + ".dat", Application.persistentDataPath + Path.DirectorySeparatorChar + "saves" + Path.DirectorySeparatorChar + s + ".dat");

@@ -8,7 +8,7 @@ public class OnSettingsClick : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        sObj.place = new SettingsManager().getBool("BuildOnOthers");
 	}
 	
 	// Update is called once per frame

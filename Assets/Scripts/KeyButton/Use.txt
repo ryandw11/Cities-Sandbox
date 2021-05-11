@@ -1,0 +1,15 @@
+How to use:
+1. Put the KeyHandler script on the main camera.
+2. Put the ButtonScript on the button you want to be a keybutton.
+3. Set the name variable of the script.
+4. Set the default key.
+5. On the button click events add the button script to it and call onClick();
+
+It is now set up.
+
+To access the key settings just get the KeyHandler by doing the following:
+
+KeyHandler kh = Camera.main.gameObject.getComponenet<KeyHandler>();
+KeyCode k = kh.getKey("name");
+
+Created by: Ryandw11

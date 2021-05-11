@@ -19,7 +19,7 @@ public class InspectorUtils {
         ins.selectedItem.GetComponent<MeshRenderer>().enabled = false;
         ins.selectedItem = null;
         ins.pnl.SetActive(false);
-        ins.del.tg.target = null;
+        ins.del.tg.ClearTargets();
         ins.info = false;
     }
 
@@ -31,9 +31,14 @@ public class InspectorUtils {
         ins.selectedItem = g;
         ins.selectedItem.GetComponent<MeshRenderer>().enabled = true;
         ins.pnl.SetActive(true);
-        ins.del.tg.target = g.transform;
+        ins.del.tg.AddTarget(g.transform);
+        foreach (Transform gt in g.transform.parent.gameObject.GetComponentsInChildren<Transform>())
+        {
+            ins.del.tg.AddTarget(gt.transform);
+        }
+        
         ins.info = true;
-        ins.del.tg.selectedAxis = RuntimeGizmos.Axis.None;
+        //ins.del.tg.selectedAxis = RuntimeGizmos.Axis.None;
     }
 
     public void changePanel(string s)

@@ -19,7 +19,7 @@ public class Ins_Trans : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonUp (0)) {
-			tg.selectedAxis = RuntimeGizmos.Axis.None;
+			//tg.selectedAxis = RuntimeGizmos.Axis.None;
 		}
 	}
 
@@ -36,7 +36,7 @@ public class Ins_Trans : MonoBehaviour {
 
     public void onDuplicate()
     {
-        tg.selectedAxis = RuntimeGizmos.Axis.None;
+        //tg.selectedAxis = RuntimeGizmos.Axis.None;
         dobk.duplicate();
     }
 

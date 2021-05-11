@@ -7,28 +7,30 @@ using System;
 public class SpawnObject : MonoBehaviour {
 
 	Camera viewCamera;
-	GameObject test;
-	public String resource = "Test";
+	public string resource = "Test";
 	public bool awaitingClick = false;
 	public GameObject obj;
-	public bool place = false;
+	public bool place = true;
     public LayerMask buildingMask;
+
+    private KeyHandler keyHandler;
+    private SettingsManager settingsManager;
 
     // Use this for initialization
     void Start () {
 		viewCamera = Camera.main; //get the camera
-	}
+        keyHandler = viewCamera.GetComponent<KeyHandler>();
+        settingsManager = new SettingsManager();
+    }
 
-	//TODO clean up this class
-	//TODO add feature to stack objects on eachother
-		
+	//TODO clean up this class	
 	
 	// Update is called once per frame
 	void Update () {
 
         if (awaitingClick)
         {
-            if (place)
+            if (!settingsManager.getBool("BuildOnOthers"))
             {
                 Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
                 Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //Grabing a plane
@@ -44,7 +46,7 @@ public class SpawnObject : MonoBehaviour {
                     {
                         return;
                     }
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetKeyDown(keyHandler.getKey("SpawnObject")))
                     {
 
                         Collider[] objColliders = Physics.OverlapSphere(point, 2);
@@ -52,7 +54,7 @@ public class SpawnObject : MonoBehaviour {
 						awaitingClick = false;
 
                     }
-                    else if (Input.GetKeyDown(KeyCode.R))
+                    else if (Input.GetKeyDown(keyHandler.getKey("RotateObject")))
                     {//end mouse if
                         obj.transform.RotateAround(new Vector3(point.x, point.y + (gameObject.transform.localScale.y / 2), point.z), obj.transform.up, Time.deltaTime * 300f);
                     }//end else
@@ -74,16 +76,18 @@ public class SpawnObject : MonoBehaviour {
                     {
                         return;
                     }
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetKeyDown(keyHandler.getKey("SpawnObject")))
                     {
 						
 						obj.transform.position = new Vector3 (point.x, point.y + (obj.transform.localScale.y / 2), point.z);//where it is placed
 						obj.layer = 10;
-						awaitingClick = false;
+                        obj.GetComponent<BoxCollider>().enabled = true; //Fixed the movement.
+                        awaitingClick = false;
+
 
 
                     }
-                    else if (Input.GetKeyDown(KeyCode.R))
+                    else if (Input.GetKeyDown(keyHandler.getKey("RotateObject")))
                     {//end mouse if
                         obj.transform.RotateAround(new Vector3(point.x, point.y + (gameObject.transform.localScale.y / 2), point.z), obj.transform.up, Time.deltaTime * 300f);
                     }//end else
@@ -104,6 +108,7 @@ public class SpawnObject : MonoBehaviour {
 			if (objColliders [i].gameObject.tag.Equals ("Ground")) {
 				obj.transform.position = new Vector3 (point.x, point.y + (obj.transform.localScale.y / 2), point.z);//where it is placed
                 obj.layer = 10;
+                obj.GetComponent<BoxCollider>().enabled = true;
 
 				break;
 			}

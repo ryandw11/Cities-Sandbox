@@ -10,6 +10,7 @@ public class Buttons_Signs : MonoBehaviour {
     public GameObject blocks;
     public GameObject signs;
     public GameObject terrain;
+    public GameObject nature;
 
     public SpawnObject spawnOBJ;
 
@@ -38,6 +39,7 @@ public class Buttons_Signs : MonoBehaviour {
             blocks.SetActive(false);
             signs.SetActive(true);
             terrain.SetActive(false);
+            nature.SetActive(false);
         }
         else
         {

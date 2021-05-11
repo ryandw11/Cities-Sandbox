@@ -10,6 +10,7 @@ public class Buttons_Terrain : MonoBehaviour {
     public GameObject blocks;
     public GameObject signs;
     public GameObject terrain;
+    public GameObject nature;
 
     public TerrainEditor terr;
 
@@ -39,6 +40,7 @@ public class Buttons_Terrain : MonoBehaviour {
             blocks.SetActive(false);
             signs.SetActive(false);
             terrain.SetActive(true);
+            nature.SetActive(false);
         }
         else
         {

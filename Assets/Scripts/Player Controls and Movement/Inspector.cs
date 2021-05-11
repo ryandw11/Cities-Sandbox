@@ -34,6 +34,7 @@ public class Inspector : MonoBehaviour {
 
 	private MeshRenderer mr;
     private InspectorUtils insu;
+	private KeyHandler keyHandler;
 
 
 	//TODO fix the problem with collison
@@ -41,7 +42,8 @@ public class Inspector : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		viewCamera = Camera.main; //get the camera
-        insu = new InspectorUtils();
+		keyHandler = viewCamera.GetComponent<KeyHandler>();
+		insu = new InspectorUtils();
         transformPanel.SetActive(true);
         propertiesPanel.SetActive(false);
         transformButton.gameObject.GetComponent<Image>().color = Color.white;
@@ -59,8 +61,9 @@ public class Inspector : MonoBehaviour {
 			if (Physics.Raycast (ray.origin, ray.direction, out rayDistance, Mathf.Infinity, buildingMask)) { //Sending out a raycast to find the ground position.
 				Vector3 point = rayDistance.point;
 				Debug.DrawLine (ray.origin, point, Color.blue); //For Testing
-				if (Input.GetMouseButtonDown (inspectorDrop.value)) { //Added a setting so it can be changed.
-					Collider[] objColliders = Physics.OverlapSphere (point, 0.1f);
+				if (Input.GetKeyDown(keyHandler.getKey("Inspector")))
+                { //Added a setting so it can be changed. Input.GetMouseButtonDown (inspectorDrop.value)
+                    Collider[] objColliders = Physics.OverlapSphere (point, 0.1f);
 
 					if (!info || selectedItem != objColliders [0].gameObject.transform.root.gameObject) {
 						info = true;
@@ -77,7 +80,9 @@ public class Inspector : MonoBehaviour {
 
 							mr = selectedItem.GetComponent<MeshRenderer> ();
 							mr.enabled = true;
-                            
+
+                            // Calls the API Method for the inspect event.
+                            APIHandler.evt.callEvent(new OnInspectEvent(selectedItem));
 						}
 					} else {
                         #region Unused Code
@@ -91,13 +96,16 @@ public class Inspector : MonoBehaviour {
 				}//
 				
 			} else {
-				if (Input.GetMouseButton(inspectorDrop.value) && info == true) {// change back to 1 if problems
-					info = false;
+				if (Input.GetKeyDown(keyHandler.getKey("Inspector")) && info == true)
+                {// change back to 1 if problems Input.GetMouseButton(inspectorDrop.value) 
+                    info = false;
 					pnl.SetActive (false);
-					del.tg.target = null;
-					del.tg.selectedAxis = RuntimeGizmos.Axis.None;
+					del.tg.ClearTargets();
+					//del.tg.selectedAxis = RuntimeGizmos.Axis.None;
 					mr.enabled = false;
                     insu.changePanel("transform");
+
+                    APIHandler.evt.callEvent(new OnUnInspectEvent(selectedItem));
                 }
 			}
 		}//end of if !sobj.awaitingClick
